@@ -23,15 +23,16 @@ export default function App() {
 
     const emptyIndex = numbers.indexOf(16);
 
-    if (
-      ![
-        emptyIndex - 1,
-        emptyIndex + 1,
-        emptyIndex - 4,
-        emptyIndex + 4,
-      ].includes(clickedIndex)
-    )
-      return;
+    const clickedRow = Math.floor(clickedIndex / 4);
+    const clickedCol = clickedIndex % 4;
+    const emptyRow = Math.floor(emptyIndex / 4);
+    const emptyCol = emptyIndex % 4;
+
+    const isValidMove =
+      (emptyCol === clickedCol && Math.abs(clickedRow - emptyRow) === 1) ||
+      (emptyRow === clickedRow && Math.abs(clickedCol - emptyCol) === 1);
+
+    if (!isValidMove) return;
 
     const newNumbers = [...numbers];
     [newNumbers[emptyIndex], newNumbers[clickedIndex]] = [
@@ -53,9 +54,9 @@ export default function App() {
   const resetHandler = async () => {
     setIsResetting(true);
     const steps = calculateSteps(numbers, initialNumbers);
-    
+
     for (const step of steps) {
-      await new Promise(resolve => setTimeout(resolve, 200));
+      await new Promise((resolve) => setTimeout(resolve, 200));
       setNumbers(step);
     }
 
@@ -70,7 +71,10 @@ export default function App() {
     for (let i = 0; i < 16; i++) {
       if (currentState[i] !== target[i]) {
         const targetIndex = currentState.indexOf(target[i]);
-        [currentState[i], currentState[targetIndex]] = [currentState[targetIndex], currentState[i]];
+        [currentState[i], currentState[targetIndex]] = [
+          currentState[targetIndex],
+          currentState[i],
+        ];
         steps.push([...currentState]);
       }
     }

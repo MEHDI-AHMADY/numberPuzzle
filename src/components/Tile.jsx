@@ -6,7 +6,7 @@ export default function Tile({ number, currentIndex, onClick }) {
 
   return (
     <div
-      className={`absolute flex items-center justify-center w-1/4 h-1/4 transition-all duration-300 ease-in-out p-4 border border-black/10 cursor-pointer text-slate-800 ${
+      className={`absolute flex items-center justify-center w-1/4 h-1/4 transition-transform duration-300 ease-in-out p-4 border border-black/10 cursor-pointer text-slate-800 ${
         number === 16
           ? "bg-transparent"
           : number === currentIndex + 1

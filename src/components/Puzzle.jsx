@@ -8,7 +8,7 @@ export default function Puzzle({ numbers, moveHandler }) {
         <Tile 
           key={number} 
           number={number} 
-          currentIndex={numbers.indexOf(number)}
+          currentIndex={index}
           onClick={() => moveHandler(index)} 
         />
       ))}

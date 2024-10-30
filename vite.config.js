@@ -13,7 +13,10 @@ export default defineConfig({
         name: "number puzzle",
         short_name: "numberPuzzle",
         description: "a simple number puzzle",
+        background_color : "#ffffff",
         theme_color: "#ffffff",
+        display : "standalone",
+        start_url : "/",
         icons: [
           {
             src: "/images/puzzleIcon192.png",
